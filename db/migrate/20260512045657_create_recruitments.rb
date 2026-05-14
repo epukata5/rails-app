@@ -10,8 +10,8 @@ class CreateRecruitments < ActiveRecord::Migration[8.1]
       "hr",
       "customer_support",
       "manufacturing",
-      "medical_care",
-      ] 
+      "medical_care"
+      ]
 
     create_table :recruitments do |t|
       t.string :title

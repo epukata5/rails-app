@@ -9,6 +9,6 @@ class Recruitment < ApplicationRecord
     hr: "hr",
     customer_support: "customer_support",
     manufacturing: "manufacturing",
-    medical_care: "medical_care",
+    medical_care: "medical_care"
   }
 end
