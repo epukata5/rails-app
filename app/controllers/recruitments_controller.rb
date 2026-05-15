@@ -39,6 +39,14 @@ class RecruitmentsController < ApplicationController
     @recruitment.destroy!
   end
 
+  def run_migration
+    # Railsのコード内から直接マイグレーションを実行するコマンド
+    ActiveRecord::Base.connection.migration_context.migrate
+    render json: { message: "大成功！マイグレーションが完了し、テーブルが作成されました！" }
+  rescue => e
+    render json: { error: "エラーが発生しました: #{e.message}" }, status: :internal_server_error
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_recruitment

@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  
+
   scope '/api/v1' do
     resources :recruitments, only: [:index, :create]
+    get 'run_migration', to: 'recruitments#run_migration'
   end
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
