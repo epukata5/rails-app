@@ -18,25 +18,25 @@ class RecruitmentsController < ApplicationController
     @recruitment = Recruitment.new(recruitment_params)
 
     if @recruitment.save
-      render json: @recruitment, status: :created, location: @recruitment
+      render json: @recruitment, status: :created
     else
       render json: @recruitment.errors, status: :unprocessable_content
     end
   end
 
-  # PATCH/PUT /recruitments/1
-  def update
-    if @recruitment.update(recruitment_params)
-      render json: @recruitment
-    else
-      render json: @recruitment.errors, status: :unprocessable_content
-    end
-  end
+  # # PATCH/PUT /recruitments/1
+  # def update
+  #   if @recruitment.update(recruitment_params)
+  #     render json: @recruitment
+  #   else
+  #     render json: @recruitment.errors, status: :unprocessable_content
+  #   end
+  # end
 
-  # DELETE /recruitments/1
-  def destroy
-    @recruitment.destroy!
-  end
+  # # DELETE /recruitments/1
+  # def destroy
+  #   @recruitment.destroy!
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
