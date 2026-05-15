@@ -1,4 +1,6 @@
 class RecruitmentsController < ApplicationController
+  protect_from_forgery with: :null_session
+  
   before_action :set_recruitment, only: %i[ show update destroy ]
 
   # GET /recruitments
