@@ -42,10 +42,10 @@ class RecruitmentsController < ApplicationController
   def run_migration
     # バッククォート(`)で囲むことで、Renderのサーバー内で直接シェルコマンドを実行します
     # 「2>&1」はエラー文も含めて結果の文字をすべて取得するためのおまじないです
-    result = `bundle exec rails db:migrate 2>&1`
+    result = `RAILS_ENV=production DATABASE_URL="#{ENV['DATABASE_URL']}" bin/rails db:migrate 2>&1`
     
     render json: { 
-      message: "コマンド実行完了！結果は以下の通りです。", 
+      message: "コマンド実行完了 結果は以下の通りです:", 
       output: result 
     }
   rescue => e
