@@ -40,11 +40,16 @@ class RecruitmentsController < ApplicationController
   end
 
   def run_migration
-    # Railsのコード内から直接マイグレーションを実行するコマンド
-    ActiveRecord::Base.connection.migration_context.migrate
-    render json: { message: "大成功！マイグレーションが完了し、テーブルが作成されました！" }
+    # バッククォート(`)で囲むことで、Renderのサーバー内で直接シェルコマンドを実行します
+    # 「2>&1」はエラー文も含めて結果の文字をすべて取得するためのおまじないです
+    result = `bundle exec rails db:migrate 2>&1`
+    
+    render json: { 
+      message: "コマンド実行完了！結果は以下の通りです。", 
+      output: result 
+    }
   rescue => e
-    render json: { error: "エラーが発生しました: #{e.message}" }, status: :internal_server_error
+    render json: { error: "プログラムエラー: #{e.message}" }, status: :internal_server_error
   end
 
   private
